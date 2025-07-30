@@ -11,7 +11,7 @@ function [y, W_out] = SISO_FxNLMS(u, e, mu_in)
 
         % 如果没有传入 mu_in，使用默认值
         if nargin < 3
-            mu = 0.02;  % 默认步长值（你可以根据需要调整）
+            mu = 0.1;  % 默认步长值（你可以根据需要调整）
         else
             mu = mu_in;  % 使用传入的 mu 值
         end
