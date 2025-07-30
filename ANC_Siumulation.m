@@ -6,6 +6,13 @@ ref = data(:, 3);      % 参考信号（u）
 d = data(:, 4);        % 原始误差信号（ANC未启用）
 fs = 1500;
 
+% Step 1.5: 数据读取
+hp_order = 64;  % 滤波器阶数（可根据实际情况调整）
+cutoff_freq = 50;  % 截止频率 (Hz)
+Wn = cutoff_freq / (fs/2);  % 归一化截止频率
+b_hp = fir1(hp_order, Wn, 'high');  % 设计高通FIR滤波器
+d = filtfilt(b_hp, 1, d);  % 零相位滤波器作用于 d
+
 % Step 2: 加载主路径（用于生成 d，可用于验证）、次级路径
 load('1stPathFilter.mat', 'w');   % 主路径
 if isrow(w), w = w'; end
