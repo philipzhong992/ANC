@@ -17,7 +17,7 @@ function [y, W_out] = SISO_FxNLMS(u, e, mu_in)
         end
 
         % 加载次级路径估计
-        load('2ndPath.mat', 'w');
+        load('2ndPathFilter.mat', 'w');
         if isrow(w), w = w'; end
         if length(w) ~= L
             error('次级路径估计长度错误');

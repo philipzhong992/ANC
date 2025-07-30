@@ -7,11 +7,11 @@ d = data(:, 4);        % 原始误差信号（ANC未启用）
 fs = 1500;
 
 % Step 2: 加载主路径（用于生成 d，可用于验证）、次级路径
-load('1stPath.mat', 'w');   % 主路径
+load('1stPathFilter.mat', 'w');   % 主路径
 if isrow(w), w = w'; end
 h_primary = w;
 
-load('2ndPath.mat', 'w');   % 次级路径估计（用于ANC建模）
+load('2ndPathFilter.mat', 'w');   % 次级路径估计（用于ANC建模）
 if isrow(w), w = w'; end
 h_secondary = w;
 
