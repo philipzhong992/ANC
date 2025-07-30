@@ -12,6 +12,13 @@ ref = data(:, 3);
 d = data(:, 4);
 N = length(ref);
 
+% Step 1.5: 数据读取
+hp_order = 64;  % 滤波器阶数（可根据实际情况调整）
+cutoff_freq = 50;  % 截止频率 (Hz)
+Wn = cutoff_freq / (fs/2);  % 归一化截止频率
+b_hp = fir1(hp_order, Wn, 'high');  % 设计高通FIR滤波器
+d = filtfilt(b_hp, 1, d);  % 零相位滤波器作用于 d
+
 % 加载真实次级路径
 load('2ndPath.mat', 'w');
 if isrow(w), w = w'; end
